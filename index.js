@@ -42,37 +42,97 @@ function startApp(){
         teamArray.push(manager)
         console.log(teamArray)
         addTeamMember()
-
     })
 function addTeamMember(){
+    inquirer.prompt([
+        {
+            type:"list",
+            name:"addMember",
+            choices:["Engineer", "Intern", "N/A"],
+            message:"What kind of team member are you adding?"
+        },
+    ]).then(response => {
+        if (response.addMember === "Engineer"){addEngineer()} 
+    else if (response.addMember === "Intern"){addIntern()}
+    else  { createTeamCards()}
+    })
+    }
+
+
+function addIntern(){
+    inquirer.prompt([
+        {
+            type:"input",
+            name:"employeeName",
+            message:"What is the name of the employee?",
+        },
+        {
+            type:"input",
+            name:"Id",
+            message:"What is the Id of the employee?",
+        },
+        {
+            type:"input",
+            name:"email",
+            message:"What is the email of the employee?",
+        },
+        {
+            type:"input",
+            name:"school",
+            message:"What school did the intern attend?",
+        },
+    ])
+    .then(response =>{
+        //addIntern()
+        const intern= new Intern (response.employeeName, response.Id, response.email, response.school);
+        teamArray.push(intern)
+        console.log(teamArray)
+        addTeamMember()})
+
+}
+
+
+function addEngineer(){
 inquirer.prompt([
     {
-        type:"list",
-        name:"addMember",
-        choices:["Engineer", "Intern", "N/A"],
-        message:"What kind of team member are you adding?"
-
-    }
+        type:"input",
+        name:"employeeName",
+        message:"What is the name of the employee?",
+    },
+    {
+        type:"input",
+        name:"Id",
+        message:"What is the Id of the employee?",
+    },
+    {
+        type:"input",
+        name:"email",
+        message:"What is the email of the employee?",
+    },
+    {
+        type:"input",
+        name:"github",
+        message:"What is the github username of the employee?",
+    },
 ]).then(response =>{
-    if (response.addMember === "Engineer"){
-        addEngineer()
-    }else if (response.addMember === "Intern"){
-        addIntern()
-    }else {
-        createTeamCards()
-    }
-})
+   
+        //addEngineer()
+        const engineer= new Engineer (response.employeeName, response.Id, response.email, response.github);
+        teamArray.push(engineer)
+        console.log(teamArray)
+        addTeamMember()})
+
+}
+        function createTeamCards(){
+            fs.writeFileSync(fileToDist, generateTeam(teamArray),"utf-8", (err)=>{
+                if(err) throw err
+            })
+        }
+
+
 }
 
 
 
 
-
-function createTeamCards(){
-    fs.writeFileSync(fileToDist, generateTeam(teamArray),"utf-8", (err)=>{
-        if(err) throw err
-    })
-
-}
-}
 startApp()
