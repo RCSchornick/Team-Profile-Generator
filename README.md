@@ -18,7 +18,7 @@ Link to Screencasitfy - https://watch.screencastify.com/v/7DlhkGcDvkt8IWRJNggI
   The user should clone the starter code from GitHub, to start the project. The project will require Node, a file system, and inquirer.
   
   ## Usage
-  Answer the questions in the command line to create the finalized project. View walkthrough video here at http://watch.screencastify.com/v/7DlhkGcDvkt8IWRJNggl
+  Answer the questions in the command line to create the finalized project. View walkthrough video here at https://watch.screencastify.com/v/7DlhkGcDvkt8IWRJNggI
   
   ## Contributions
   undefined
