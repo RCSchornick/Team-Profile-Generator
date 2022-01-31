@@ -6,6 +6,7 @@ const path = require('path')
 const inquirer = require('inquirer')
 const generateTeam = require('./src/html.js')
 
+
 const pathToDist = path.resolve (__dirname, "dist")
 const fileToDist = path.join (pathToDist, "team.html")
 
@@ -131,8 +132,5 @@ inquirer.prompt([
 
 
 }
-
-
-
 
 startApp()
